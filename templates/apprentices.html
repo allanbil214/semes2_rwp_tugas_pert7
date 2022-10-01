@@ -1,0 +1,44 @@
+{% include 'header.html' %}
+<div class="col-sm-8">
+  <div class="p-3 bg-secondary text-white rounded">
+    <h2>Apprentice (弟子) Data</h2>
+    <p>This is the data for our Apprentices in Akihiko Dojo</p>    
+  </div>    
+  <table class="table table-striped table-bordered table-hover mt-3">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Birth Place</th>
+        <th scope="col">Birth Date</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Address</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody id="row"></tbody>
+</table>
+  <script>
+    $.ajax({
+      type:"GET",
+      url:"http://127.0.0.1:5000/show",
+      success: function(result) {
+        for(var i = 0;i < result.length; i++){
+          var row = $('<tr><td>' + result[i][0] + 
+              '</td><td>' + result[i][1] +
+              '</td><td>' + result[i][2] + 
+              '</td><td>' + result[i][3] + 
+              '</td><td>' + result[i][4] +
+              '</td><td>' + result[i][5] +
+              '</td><td>' + result[i][6] + 
+            '</td></tr>')
+          $('#row').append(row)
+        }
+      }
+    })
+  </script>
+</div>
+</div>
+</div>
+</div>
+{% include 'footer.html' %}
